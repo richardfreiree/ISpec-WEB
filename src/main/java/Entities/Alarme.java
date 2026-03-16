@@ -2,6 +2,9 @@ package Entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Alarme extends Equipamento {
     private String tipoSensor;
     private boolean funcionando;
