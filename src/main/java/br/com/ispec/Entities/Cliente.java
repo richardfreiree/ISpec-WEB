@@ -1,8 +1,8 @@
 package br.com.ispec.Entities;
 
 import java.util.*;
-
 import jakarta.persistence.*;
+
 @Entity
 public class Cliente {
     @Id
@@ -17,10 +17,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Localizacao> localizacoes;
 
-    @OneToMany
-    private List<Equipamento> equipamentos;
-
-    public Cliente(){}
+    public Cliente() {
+    }
 
     public Long getId() {
         return id;
@@ -77,14 +75,4 @@ public class Cliente {
     public void setLocalizacoes(List<Localizacao> localizacoes) {
         this.localizacoes = localizacoes;
     }
-
-    public List<Equipamento> getEquipamentos() {
-        return equipamentos;
-    }
-
-    public void setEquipamentos(List<Equipamento> equipamentos) {
-        this.equipamentos = equipamentos;
-    }
-
-    
 }

@@ -1,7 +1,6 @@
 package br.com.ispec.Entities;
 
 import java.time.LocalDate;
-
 import br.com.ispec.Enums.Status;
 import jakarta.persistence.*;
 
@@ -25,21 +24,28 @@ public abstract class Equipamento {
 
     protected boolean ativo;
 
-    public Equipamento(){}
-
-    public boolean estaOperacional(){
-        return ativo && status == Status.CONCLUIDA;
+    public Equipamento() {
     }
 
-    public boolean precisaRevisao(){
+    
+    public boolean estaOperacional() {
+        return ativo && status == Status.ATIVO;
+    }
+
+    public boolean precisaRevisao() {
+        if (dataInstalacao == null)
+            return true;
         return dataInstalacao.plusYears(1).isBefore(LocalDate.now());
     }
 
-    public int anosDeUso(){
+    public int anosDeUso() {
+        if (dataInstalacao == null)
+            return 0;
         return LocalDate.now().getYear() - dataInstalacao.getYear();
     }
 
     public abstract boolean precisaManutencao();
+
     public abstract String tipoEquipamento();
 
     public Long getId() {
@@ -89,6 +95,4 @@ public abstract class Equipamento {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
-    
 }

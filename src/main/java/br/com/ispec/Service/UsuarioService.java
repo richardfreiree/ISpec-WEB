@@ -2,9 +2,11 @@ package br.com.ispec.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import br.com.ispec.Entities.Usuario;
 import br.com.ispec.Repository.UsuarioRepository;
-
+@Service
 public class UsuarioService {
     private final UsuarioRepository repository;
 

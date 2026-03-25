@@ -1,7 +1,6 @@
 package br.com.ispec.Entities;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 
 @Entity
@@ -10,21 +9,26 @@ public class Alarme extends Equipamento {
     private boolean funcionando;
     private LocalDate ultimaVerificacao;
 
-    public Alarme(){}
+    public Alarme() {
+    }
 
-    public boolean precisaTeste(){
+    
+    public boolean precisaTeste() {
+        if (ultimaVerificacao == null)
+            return true;
         return ultimaVerificacao.plusMonths(6).isBefore(LocalDate.now());
     }
 
     @Override
-    public String tipoEquipamento(){
+    public String tipoEquipamento() {
         return "Alarme";
     }
 
     @Override
-    public boolean precisaManutencao(){
-        if(ultimaVerificacao == null) return true;
-        return ultimaVerificacao.plusMonths(6).isBefore(LocalDate.now());
+    public boolean precisaManutencao() {
+        if (ultimaVerificacao == null)
+            return true;
+        return !funcionando || ultimaVerificacao.plusMonths(6).isBefore(LocalDate.now());
     }
 
     public String getTipoSensor() {
@@ -50,6 +54,4 @@ public class Alarme extends Equipamento {
     public void setUltimaVerificacao(LocalDate ultimaVerificacao) {
         this.ultimaVerificacao = ultimaVerificacao;
     }
-
-    
 }

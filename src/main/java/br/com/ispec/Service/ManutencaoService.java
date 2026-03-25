@@ -3,7 +3,9 @@ package br.com.ispec.Service;
 import br.com.ispec.Entities.Manutencao;
 import br.com.ispec.Repository.ManutencaoRepository;
 import java.util.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ManutencaoService {
     private final ManutencaoRepository repository;
 
@@ -17,7 +19,7 @@ public class ManutencaoService {
 
     public Manutencao buscarPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Manutenção não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Manutenção não encontrada com id: " + id));
     }
 
     public Manutencao salvar(Manutencao manutencao) {
