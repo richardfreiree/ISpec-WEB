@@ -1,6 +1,9 @@
 package br.com.ispec.Entities;
 
 import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +18,7 @@ public class Cliente {
     private String endereco;
 
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnoreProperties("clientes")
     private List<Localizacao> localizacoes;
 
     public Cliente() {

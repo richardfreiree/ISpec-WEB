@@ -1,5 +1,7 @@
 package br.com.ispec.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Localizacao {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("localizacoes")
     private Cliente cliente;
 
     public Localizacao(){}

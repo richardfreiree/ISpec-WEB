@@ -2,6 +2,7 @@ package br.com.ispec.Controller;
 
 import java.util.*;
 
+import br.com.ispec.Entities.Cliente;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.ispec.Entities.Equipamento;

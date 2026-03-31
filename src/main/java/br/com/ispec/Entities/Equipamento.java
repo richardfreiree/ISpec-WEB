@@ -2,10 +2,20 @@ package br.com.ispec.Entities;
 
 import java.time.LocalDate;
 import br.com.ispec.Enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Extintor.class, name = "extintor"),
+        @JsonSubTypes.Type(value = Alarme.class, name = "alarme"),
+        @JsonSubTypes.Type(value = Hidrante.class, name = "hidrante")
+})
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class Equipamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +25,7 @@ public abstract class Equipamento {
 
     @ManyToOne
     @JoinColumn(name = "localizacao_id")
+    @JsonIgnoreProperties("equipamentos")
     protected Localizacao localizacao;
 
     protected LocalDate dataInstalacao;
